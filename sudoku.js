@@ -35,6 +35,32 @@ function prettyBoard() {
 }
 
 function findEmpty(board) {
+  return [row, col];
+}
 
-  return [row, col]
+function isValide(arr, row, col, numb) {
+  for (let i = 0; i < 9; i += 1) {
+    if (arr[row][i] === numb && i !== col) {
+      return false;
+    }
+  }
+
+  for (let i = 0; i < 9; i += 1) {
+    if (arr[i][col] === numb && i !== row) {
+      return false;
+    }
+  }
+
+  const x = Math.floor(row / 3) * 3;
+  const y = Math.floor(col / 3) * 3;
+
+  for (let i = x; i < x + 3; i += 1) {
+    for (let j = y; j < y + 3; j += 1) {
+      if (arr[i][j] === numb && i !== row && j !== col) {
+        return false;
+      }
+    }
+  }
+
+  return true;
 }
