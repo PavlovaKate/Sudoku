@@ -1,7 +1,15 @@
 function read() {
-  /**
-   * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
-   */
+  const fs = require("fs");
+  const path = require("path");
+  const { EOL } = require("os");
+
+  const allData = fs
+    .readFileSync(`${path.join(__dirname)}/puzzles.txt`, "utf-8")
+    .trim()
+    .split(EOL)
+    .map((el) => el.match(/.{9}/g).map((el) => el.match(/./g)));
+
+  return allData;
 }
 
 function solve() {
