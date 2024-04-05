@@ -78,4 +78,4 @@ function isValide(arr, row, col, numb) {
   return true;
 }
 
-module.exports = { solve, read, prettyBoard };
+module.exports = { solve, read };
