@@ -37,7 +37,7 @@ function prettyBoard(board) {
   setTimeout(() => {
     console.clear();
     console.table(board);
-  }, 2000);
+  }, 1000);
 }
 
 function findEmpty(board) {
