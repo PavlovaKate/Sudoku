@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-use-before-define */
 function read() {
   const fs = require('fs');
   const path = require('path');
@@ -12,19 +14,24 @@ function read() {
   return allData;
 }
 
-function solve() {
-  /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции read.
-   * Возвращает игровое поле после попытки его решить.
-   */
+function solve(board) {
+  const position = findEmpty(board);
+  if (position === null) return true;
+  const [row, col] = position;
+
+  for (let i = 1; i <= 9; i += 1) {
+    const iToString = String(i);
+    board[row][col] = iToString;
+    if (isValide(board, row, col, iToString)) {
+      if (solve(board)) return board;
+    }
+    board[row][col] = '-';
+  }
+  return false;
 }
 
-function isSolved() {
-  /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции solve.
-   * Возвращает булевое значение — решено это игровое поле или нет.
-   */
-}
+// function isSolved() {
+// }
 
 function prettyBoard(board) {
   setTimeout(() => {
@@ -32,15 +39,16 @@ function prettyBoard(board) {
     console.table(board);
   }, 2000);
 }
-const board= read()[0]
+
 function findEmpty(board) {
-    for( let row=0; row<=9; row++){
-    for( let col=0; col<=9; col++){
-       if(board[row][col]==="-"){
-         return [row, col];
-     }
-   }
+  for (let row = 0; row < 9; row += 1) {
+    for (let col = 0; col < 9; col += 1) {
+      if (board[row][col] === '-') {
+        return [row, col];
+      }
+    }
   }
+  return null;
 }
 
 function isValide(arr, row, col, numb) {
@@ -69,3 +77,5 @@ function isValide(arr, row, col, numb) {
 
   return true;
 }
+
+module.exports = { solve, read };
