@@ -33,3 +33,8 @@ function prettyBoard() {
    * Подумай, как симпатичнее его вывести.
    */
 }
+
+function findEmpty(board) {
+
+  return [row, col]
+}
