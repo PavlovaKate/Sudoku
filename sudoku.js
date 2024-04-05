@@ -37,7 +37,7 @@ function prettyBoard(board) {
   setTimeout(() => {
     console.clear();
     console.table(board);
-  }, 2000);
+  }, 1000);
 }
 
 function findEmpty(board) {
@@ -78,4 +78,4 @@ function isValide(arr, row, col, numb) {
   return true;
 }
 
-module.exports = { solve, read };
+module.exports = { solve, read, prettyBoard };
